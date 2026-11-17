@@ -1,0 +1,28 @@
+/* Battle Beaver-inspired DS4 skin for Gamepad Viewer.
+   Select PlayStation 4 skin. CSS overrides default sprites; experimental. */
+.controller.ds4 .back,
+.controller.ds4 .front {
+  filter: brightness(.66) contrast(1.25);
+}
+/* Carbon-fiber-like shading on shell; preserve original DS4 geometry. */
+.controller.ds4 .back {
+  background-image: repeating-linear-gradient(35deg,rgba(85,85,85,.23) 0 2px,rgba(0,0,0,.1) 2px 5px),repeating-linear-gradient(-35deg,rgba(80,80,80,.19) 0 2px,rgba(0,0,0,.08) 2px 5px);
+  background-blend-mode: overlay,overlay;
+}
+/* The following filters tint the stock PS4 button sprites without moving them. */
+.controller.ds4 .button,
+.controller.ds4 .bumper,
+.controller.ds4 .trigger,
+.controller.ds4 .arrows,
+.controller.ds4 .start,
+.controller.ds4 .select,
+.controller.ds4 .meta {
+  filter: grayscale(1) brightness(2.1);
+}
+.controller.ds4 .stick {filter: grayscale(1) brightness(.65)}
+/* Small gold wordmark at the bottom center. */
+.controller.ds4::after {
+  content:'BATTLE BEAVER';position:absolute;left:50%;bottom:8%;transform:translateX(-50%);
+  color:#d2a548;font:700 11px Arial,sans-serif;letter-spacing:1px;
+  text-shadow:0 1px 2px #000;pointer-events:none;
+}
