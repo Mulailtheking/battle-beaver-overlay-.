@@ -1,0 +1,128 @@
+/* BATTLE BEAVER | DualShock 4 / GamePad Viewer PS4 edit skin | v3
+   Use in EDIT CSS URL (editcss=), never Custom CSS URL (css=).
+   Keeps GamePad Viewer's native PS4 outline, controller inputs and stick movement.
+   Source skin uses .controller.ds4, .button, .face, .stick, .start, .back, .meta.
+*/
+
+/* Keep the original PS4 silhouette and touchpad. The carbon pattern is a
+   transparent textured layer cut to the stock silhouette, not a new box. */
+.controller.ds4 { isolation: isolate; }
+.controller.ds4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    repeating-linear-gradient( 44deg, rgba(186,186,186,.23) 0px 1px, transparent 1px 5px),
+    repeating-linear-gradient(-44deg, rgba(160,160,160,.19) 0px 1px, transparent 1px 5px),
+    linear-gradient(165deg, rgba(48,48,48,.20), rgba(0,0,0,.40));
+  -webkit-mask-image: url('https://gamepadviewer.com/ps4-assets/base.svgz');
+  mask-image: url('https://gamepadviewer.com/ps4-assets/base.svgz');
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  opacity: .66;
+}
+
+/* Keep all native controls above the decorative carbon layer. */
+.controller.ds4 > div { position: relative; z-index: 1; }
+/* Native controls are absolutely positioned. Restore that explicitly for
+   top-level controls only, because this stylesheet adds a stacking context. */
+.controller.ds4 > .triggers,
+.controller.ds4 > .bumpers,
+.controller.ds4 > .touchpad,
+.controller.ds4 > .meta,
+.controller.ds4 > .arrows,
+.controller.ds4 > .abxy,
+.controller.ds4 > .sticks,
+.controller.ds4 > .dpad { position: absolute; }
+
+/* Four white face-button caps, monochrome symbols, and responsive press. */
+.controller.ds4 .abxy .button {
+  box-sizing: border-box;
+  background: linear-gradient(145deg, #fff 8%, #e4e4e4 83%) !important;
+  border: 3px solid #202020;
+  border-radius: 50%;
+  color: #292929;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.85), 0 2px 3px rgba(0,0,0,.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: bold 26px/1 Arial, sans-serif;
+  text-shadow: none;
+  transition: filter .05s, box-shadow .05s;
+}
+.controller.ds4 .abxy .button.a::after { content: '×'; }
+.controller.ds4 .abxy .button.b::after { content: '○'; }
+.controller.ds4 .abxy .button.x::after { content: '□'; }
+.controller.ds4 .abxy .button.y::after { content: '△'; }
+.controller.ds4 .abxy .button.pressed {
+  filter: brightness(.67);
+  box-shadow: inset 0 3px 7px rgba(0,0,0,.65);
+}
+
+/* Solid-white cross D-pad, retaining GamePad Viewer's four hit indicators. */
+.controller.ds4 .dpad .face {
+  box-sizing: border-box;
+  background: linear-gradient(145deg,#fff,#dcdcdc) !important;
+  border: 2px solid #2c2c2c;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.9);
+}
+.controller.ds4 .dpad .face.pressed { filter: brightness(.62); }
+
+/* Both analog sticks remain black with native movement and clicks. */
+.controller.ds4 .sticks .stick {
+  background-color: rgba(12,12,12,.96) !important;
+  filter: contrast(1.1);
+}
+.controller.ds4 .sticks .stick.pressed { background-color: #555 !important; }
+
+/* White menu/select controls. Keep their existing click-state classes. */
+.controller.ds4 .arrows .back,
+.controller.ds4 .arrows .start {
+  background: linear-gradient(135deg,#fff,#d9d9d9) !important;
+  border: 2px solid #202020;
+  border-radius: 8px;
+  opacity: .96 !important;
+  box-sizing: border-box;
+}
+.controller.ds4 .arrows .back.pressed,
+.controller.ds4 .arrows .start.pressed { filter: brightness(.55); }
+
+/* White PS/home button; darkens on press. */
+.controller.ds4 .meta {
+  background: linear-gradient(145deg,#fff,#ddd) !important;
+  border: 3px solid #1d1d1d;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px #090909;
+}
+.controller.ds4 .meta.pressed { filter: brightness(.57); }
+
+/* Shoulder buttons and triggers: show pale-white stock sprites,
+   with a stronger highlight when pressed. Trigger opacity still reflects
+   analogue trigger travel, rather than being locked on. */
+.controller.ds4 .bumper,
+.controller.ds4 .trigger { filter: grayscale(1) brightness(2.8) contrast(1.05); }
+.controller.ds4 .bumper.pressed { filter: grayscale(1) brightness(3.8); }
+
+/* Gold Battle Beaver wordmark at bottom-center of controller, not page. */
+.controller.ds4::after {
+  content: 'BATTLE BEAVER';
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 439px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: #d8ac52;
+  font: 900 13px/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: 1.45px;
+  text-shadow: 0 1px 2px #050505, 0 0 5px rgba(204,154,60,.4);
+  pointer-events: none;
+}
