@@ -1,0 +1,56 @@
+/* Battle Beaver PS4 overlay: experimental Gamepad Viewer skin v2.
+   Keeps the native PS4 shape, positioning, and input animations. */
+
+/* Dark shell; retain Gamepad Viewer's original silhouette. */
+.controller.ds4 .back,
+.controller.ps4 .back {
+  filter: grayscale(1) brightness(.43) contrast(1.25);
+}
+
+/* Carbon-fiber-inspired overlay on the shell (if the shell element supports it). */
+.controller.ds4 .back,
+.controller.ps4 .back {
+  background-image:
+    repeating-linear-gradient(45deg, rgba(145,145,145,.18) 0 2px, rgba(0,0,0,.12) 2px 5px),
+    repeating-linear-gradient(-45deg, rgba(120,120,120,.13) 0 2px, rgba(0,0,0,.10) 2px 5px);
+  background-blend-mode: screen;
+}
+
+/* White shoulder buttons, triggers, D-pad, face buttons and menu controls. */
+.controller.ds4 .button,
+.controller.ds4 .bumper,
+.controller.ds4 .trigger,
+.controller.ds4 .arrows,
+.controller.ds4 .start,
+.controller.ds4 .select,
+.controller.ds4 .meta,
+.controller.ps4 .button,
+.controller.ps4 .bumper,
+.controller.ps4 .trigger,
+.controller.ps4 .arrows,
+.controller.ps4 .start,
+.controller.ps4 .select,
+.controller.ps4 .meta {
+  filter: grayscale(1) brightness(2.2) contrast(1.1);
+}
+
+/* Black analog sticks. */
+.controller.ds4 .stick,
+.controller.ps4 .stick {
+  filter: grayscale(1) brightness(.52) contrast(1.2);
+}
+
+/* Small gold brand detail, separate from animated button sprites. */
+.controller.ds4::after,
+.controller.ps4::after {
+  content: 'BATTLE BEAVER';
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  color: #d2a548;
+  font: 700 10px Arial, sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px #000;
+  pointer-events: none;
+}
